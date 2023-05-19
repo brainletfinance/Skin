@@ -2,8 +2,8 @@ import { makeStyles, createMuiTheme } from "@material-ui/core";
 
 const palette = {
 	highlight: '#0FF',
-	background: '#272936',
-	secondaryBackground: '#202336'
+	background: '#C0C0C0',
+	secondaryBackground: '#fade02',
 }
 const classes = {
 	palette
@@ -14,14 +14,14 @@ const muiTheme = createMuiTheme({
 		type: 'dark',
 		primary: {
 			// light: will be calculated from palette.primary.main,
-			main: '#262b4a',
+			main: '#C0C0C0',
 			contrastText: '#fff',
 
 			// dark: will be calculated from palette.primary.main,
 			// contrastText: will be calculated to contrast with palette.primary.main
 		},
 		secondary: {
-			main: '#00FFFF',
+			main: '#000000',
 			// dark: will be calculated from palette.secondary.main,
 			contrastText: '#fff',
 		},
@@ -36,7 +36,7 @@ const muiTheme = createMuiTheme({
 	overrides: {
 		MuiBackdrop: {
 			root: {
-				backgroundColor: 'rgba(0, 0, 0, 0.50)'
+				backgroundColor: '#fade02'
 			}
 		},
 		MuiPaper: {
