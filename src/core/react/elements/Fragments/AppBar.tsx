@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 		verticalAlign: "middle",
 	},
 	appBar: {
-		backgroundColor: theme.palette.type == 'dark' ? '#272936' : theme.palette.primary.main,
+		backgroundColor: '#272936',
 		color: '#fff',
 		zIndex: theme.zIndex.drawer + 1,
 		transition: theme.transitions.create(['width', 'margin'], {
