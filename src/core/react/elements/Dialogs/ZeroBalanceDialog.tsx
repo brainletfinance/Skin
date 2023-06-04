@@ -41,7 +41,7 @@ const Render: React.FC<Params> = React.memo(({ dispatch, selectedAddress, balanc
 		switch (dialogType) {
 			case DialogType.ZeroDam:
 				if (isArbitrumMainnet) {
-					return `You'll need a bit of ${lockableTokenShortName} Tokens on Arbitrum!`;
+					return `Hey there, fellow Brainlet! Before you embark on your journey, make sure to secure yourself some ArbiFLUX tokens on Arbitrum. Think of it as the secret sauce that grants you an exclusive VIP pass to the meme party!`;
 				}
 				return `You'll need a bit of ${lockableTokenShortName} Tokens!`;
 		}
@@ -83,7 +83,7 @@ const Render: React.FC<Params> = React.memo(({ dispatch, selectedAddress, balanc
 	const getBody = () => {
 		switch (dialogType) {
 			case DialogType.ZeroDam:
-				return `Before you can mint ${mintableTokenShortName} tokens you will need a bit of ${lockableTokenShortName} and ETH in your`;
+				return `You need some ${lockableTokenShortName} and ETH in your`;
 		}
 
 		return `To interact with ${ecosystemName} Smart Contracts you will need a bit of Ethereum (ETH) ${isArbitrumMainnet ? 'on Abtirum L2' : ''} in your`;
@@ -120,7 +120,7 @@ const Render: React.FC<Params> = React.memo(({ dispatch, selectedAddress, balanc
 		<DialogTitle id="alert-dialog-title">{getTitle()}</DialogTitle>
 		<DialogContent>
 			<Box mb={4}>
-				<Typography gutterBottom>{getBody()} <Box display="inline" fontWeight="bold">{selectedAddress}</Box> account. </Typography>
+				<Typography gutterBottom>{getBody()} <Box display="inline" fontWeight="bold">{selectedAddress}</Box> account in order to start a Brain Mint. </Typography>
 				<Box mt={3}>
 					<Typography gutterBottom>
 						{getBalance()}

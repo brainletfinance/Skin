@@ -49,7 +49,7 @@ const Render: React.FC<RenderParams> = React.memo(({ balances, addressDetails, i
 	const actualDamMarketCap = `$ ${getPriceToggle({ value: balances.damTotalSupply, inputToken: Token.Lockable, outputToken: Token.USDC, balances, round: 2 })} USD`;
 	const circulatingDamMarketCap = `$ ${getPriceToggle({ value: balances.damTotalSupply.sub(addressDetails.globalLockedAmount), inputToken: Token.Lockable, outputToken: Token.USDC, balances, round: 2 })} USD`;
 
-	const shortFluxPrice = `${getPriceToggle({ value: new BN(1).mul(new BN(10).pow(new BN(18))), inputToken: Token.Mintable, outputToken: Token.USDC, balances, round: 4 })}`
+	const shortFluxPrice = `${getPriceToggle({ value: new BN(1).mul(new BN(10).pow(new BN(18))), inputToken: Token.Mintable, outputToken: Token.USDC, balances, round: config.mintableTokenPriceDecimals })}`
 	const actualFluxPrice = `$ ${shortFluxPrice} USD`;
 	const actualFluxMarketCap = `$ ${getPriceToggle({ value: balances.fluxTotalSupply, inputToken: Token.Mintable, outputToken: Token.USDC, balances, round: 2 })} USD`;
 
@@ -179,7 +179,7 @@ const Render: React.FC<RenderParams> = React.memo(({ balances, addressDetails, i
 
 	const getCardTitle = () => {
 		if (isArbitrumMainnet) {
-			return 'Realtime Available SushiSwap (L2) Liquidity'
+			return 'Liquidity Info --- 100% Community-Fueled Liquidity! (No Premine)'
 		}
 		return 'Realtime Available Uniswap v3 Liquidity'
 	}
@@ -188,12 +188,10 @@ const Render: React.FC<RenderParams> = React.memo(({ balances, addressDetails, i
 		<CardContent>
 			<Grid container justify="space-between" alignItems="center">
 				<Grid item>
-					<LightTooltip title="Our realtime global liquidity is fetched from Uniswap on-chain data through a smart contract">
-						<Typography variant="h5" component="h2">
+					<Typography variant="h5" component="h2">
 							{getCardTitle()}
 						</Typography>
-					</LightTooltip>
-				</Grid>
+					</Grid>
 				<Grid item>
 					<ExploreLiquidityPools buttonType={LiquidityPoolButtonType.SmallButton} />
 				</Grid>

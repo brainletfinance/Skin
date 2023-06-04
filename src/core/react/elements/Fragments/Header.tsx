@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
 		left: 24
 	},
 	proofOfBurn: {
-		color: '#0ff',
+		color: '#8b0000',
 	},
 }));
 
@@ -99,9 +99,8 @@ const Header: React.FC<Props> = React.memo(({ isSubPage, isVideoVisible }) => {
 				The MIT License {getArrow()}
 			</Typography>
 		}
-		return <Typography component="h3" variant="h3" color="textPrimary" gutterBottom display="block" className={classes.title}>
-			No brains <span className={classes.proofOfBurn}>more gains</span> {/*getArrow()*/}
-		</Typography>
+		return <Typography component="h3" align="left" variant="h3" color="textPrimary" gutterBottom display="block" className={classes.title} style={{ fontWeight: 'bold' }}>
+			No Brains more Gainz  </Typography>
 	}
 
 	const getSubHeader = () => {
@@ -147,10 +146,9 @@ const Header: React.FC<Props> = React.memo(({ isSubPage, isVideoVisible }) => {
 				{getLiqudityPoolsButton()}
 				<Grid item>
 					<Button variant="outlined" color="secondary" size="large" style={{ fontSize: '1.5rem' }} onClick={navigateDashboard}>
-
 						<Grid container alignItems="center">
 							<Grid item>
-								Enter 
+								Start Mint 
 							</Grid>
 						</Grid>
 					</Button>
@@ -216,7 +214,7 @@ const Header: React.FC<Props> = React.memo(({ isSubPage, isVideoVisible }) => {
 					<Box>
 						{getTitle()}
 						<Typography variant="h6" align="left" color="textSecondary" paragraph className={classes.titleSlogan}>
-						<Typography display="inline" variant="h6" color="textPrimary">The Frog</Typography>  had it's 6.9% premine, it's time for 0%, and 0 Brain cells to rule all memes. Finance so easy it requires 0 brain cells, because you'll burn them all.<br />
+						<Typography display="inline" variant="h6" color="textPrimary">Wave goodbye to</Typography>  Froggy's extra thicc 6.9% premine and give a big ol' welcome to our sexy 0% masterplan! We're whipping up gainz like a Michelin-star chef with the IQ of a doorknob. It's so simple, even if you donated your brain cells to lab rats, you'd nail it. Who needs smarts when you've got the mind-blowing might of a Brainlet? <br />
 						</Typography>
 					</Box>
 				</Grid>

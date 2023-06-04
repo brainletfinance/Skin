@@ -9,6 +9,7 @@ import { BNToDecimal, getBurnRatio, getPriceToggle } from '../../../web3/helpers
 import { DialogType, FluxAddressDetails, FluxAddressLock, FluxAddressTokenDetails, Token } from '../../../interfaces';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import TimerOffIcon from '@material-ui/icons/TimerOff';
 
 import BN from 'bn.js'
 import LightTooltip from '../LightTooltip';
@@ -87,13 +88,13 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, selectedAddres
 
 			const getButton = () => {
 				const isDisabled = !isCurrentAddress || addressDetails.fluxBalance.isZero()
-				const button = <Button disabled={isDisabled} size="small" variant="outlined" color="secondary" onClick={() => showBurnDialog()} startIcon={<WhatshotIcon style={{ color: '#ff9b00' }} />}>Burn {mintableTokenShortName}</Button>
+				const button = <Button disabled={isDisabled} size="small" variant="outlined" color="secondary" onClick={() => showBurnDialog()} startIcon={<WhatshotIcon style={{ color: '#8b0000' }} />}><strong>Burn {mintableTokenShortName}</strong></Button>
 
 				if (addressDetails.fluxBalance.isZero()) {
 					return <LightTooltip title={`This address must have ${mintableTokenShortName} tokens to burn.`}><Box display="inline-block">{button}</Box></LightTooltip>
 				}
 				if (!isCurrentAddress) {
-					return <LightTooltip title={`You must select this account in your wallet to Burn ${mintableTokenShortName} for this address.`}><Box display="inline-block">{button}</Box></LightTooltip>
+					return <LightTooltip title={`You must select this account in your wallet to Burn {mintableTokenShortName} for this address.`}><Box display="inline-block">{button}</Box></LightTooltip>
 				}
 
 				return button;
@@ -166,7 +167,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, selectedAddres
 			return <>{balanceInUsdc}</>
 		}
 		return <DetailedListItem
-			title={`${lockableTokenShortName} Balance:`}
+			title={`${lockableTokenShortName} Balance (Unlocked): You will need to Stop Minting to relock more.`}
 			main={getDamBalance()}
 			sub={getDamBalanceUSD()}
 			buttons={
@@ -187,7 +188,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, selectedAddres
 			}
 
 			const getButton = () => {
-				const button = <Button disabled={!isCurrentAddress} size="small" variant="outlined" onClick={() => showUnlockDialog()} startIcon={<LockOpenIcon style={{ color: '#0FF' }} />}>Stop Mint</Button>
+				const button = <Button disabled={!isCurrentAddress} size="small" variant="outlined" onClick={() => showUnlockDialog()} startIcon={<TimerOffIcon style={{ color: '#8b0000' }} />}>Stop Minting</Button>
 
 				if (!isCurrentAddress) {
 					return <LightTooltip title="You must select this account in your wallet to stop a validator for this address."><Box display="inline-block">{button}</Box></LightTooltip>
@@ -212,7 +213,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, selectedAddres
 		}
 
 		return <DetailedListItem
-			title={`${lockableTokenShortName} Powering Validators:`}
+			title={`${lockableTokenShortName} Locked:`}
 			main={getLockedInAmount()}
 			sub={getLockedInAmountUSD()}
 			buttons={
@@ -240,7 +241,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, selectedAddres
 		}
 
 		return <DetailedListItem
-			title={`${mintableTokenShortName} Burned:`}
+			title={`${mintableTokenShortName} Perma Burned:`}
 			main={getFluxBurnedBalance()}
 			sub={getFluxBurnedBalanceUSD()}
 		/>
@@ -251,7 +252,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, selectedAddres
 			<Grid container justify="space-between" alignItems="center">
 				<Grid item>
 					<Typography variant="h5" component="h2">
-						Address Balances
+						My Activity
 					</Typography>
 				</Grid>
 				<Grid item>

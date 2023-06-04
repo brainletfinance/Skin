@@ -427,7 +427,7 @@ const Render: React.FC<RenderProps> = React.memo(({ dispatch, isArbitrumMainnet 
 
 					<Grid container alignItems="center">
 						<Grid item>
-							Validators Dashboard
+							Minting Dashboard
 						</Grid>
 					</Grid>
 				</Button>

@@ -72,7 +72,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, dispatch, e
 
 					<Box mb={1} fontWeight="bold">WARNING: YOU ARE ABOUT TO LOSE <Box style={{ color: '#0FF' }} fontSize="1.1rem" display="inline">{moneyAmount} {clientSettings.currency}</Box> IN UNMINTED {mintableTokenShortName}. IF YOU CONTINUE THIS UNMINTED AMOUNT WILL BE LOST!</Box>
 					If you are seeing this warning it means you have at least $5.00 in unminted {mintableTokenShortName}!
-					Please mint your {mintableTokenShortName} first before continuing.
+					Please mint your {mintableTokenShortName} first before unlocking.
 				</Alert>
 			</Box>
 		)
@@ -85,15 +85,15 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, dispatch, e
 	>
 		{error ? <MessageDialog open={true} title="Error" message={error} onClose={onCloseError} /> : null}
 		<form onSubmit={onSubmit}>
-			<DialogTitle id="alert-dialog-title">{"Stop Mint?"}</DialogTitle>
+			<DialogTitle id="alert-dialog-title">{"Stop Minting?"}</DialogTitle>
 			<DialogContent>
-				<Box>Tokens To Return: <Box display="inline" fontWeight="fontWeightBold">{amount} {lockableTokenShortName}</Box></Box>
+				<Box>Returned Balance: <Box display="inline" fontWeight="fontWeightBold">{amount} {lockableTokenShortName}</Box></Box>
 				<Box my={2}><Divider /></Box>
 				<Box mb={6}>
 
-					<Typography gutterBottom={true}>You can stop your validator at any time to get 100% of your {lockableTokenShortName} tokens back.</Typography>
+					<Typography gutterBottom={true}>Feel like hitting the pause button on your Mint? No worries! You'll scoop up 100% of your ArbiFLUX tokens right back. But remember, this move is a bit like a game of Jenga - it'll topple your precious HODL multiplier. If you unlock your Mint, we'll hit the reset button on that time bonus. Oh, and just a heads-up, it'll take about a moon cycle (28 days) to rebuild that sweet multiplier again.</Typography>
 					<Box my={3}>
-						<Typography gutterBottom={true}>Please note that stopping a validator will cause you to lose your current <Box fontWeight="fontWeightBold" display="inline" style={{ whiteSpace: 'nowrap' }}>{getFormattedMultiplier(addressDetails.addressTimeMultiplier)}</Box> time bonus. Restarting a validator will reset the time bonus.</Typography>
+						<Typography gutterBottom={true}>Stopping your Mint will cause you to lose your current <Box fontWeight="fontWeightBold" display="inline" style={{ whiteSpace: 'nowrap' }}>{getFormattedMultiplier(addressDetails.addressTimeMultiplier)}</Box> HODL multiplier.</Typography>
 					</Box>
 					<Typography style={{ color: theme.classes.palette.highlight }}>Important Note: <Box fontWeight="bold" display="inline">Any unminted {mintableTokenShortName} tokens will be lost.</Box></Typography>
 
@@ -108,7 +108,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, dispatch, e
 						</Button>
 					</Box>
 					<Button type="submit" color="secondary" size="large" variant="outlined"  >
-						Continue
+						Unlock
 					</Button>
 				</Box>
 			</DialogActions>

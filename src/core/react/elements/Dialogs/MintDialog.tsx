@@ -4,7 +4,7 @@ import { Box, Button, Typography, Divider, Dialog, DialogTitle, DialogContent, T
 import { Web3Context } from '../../../web3/Web3Context'
 import { commonLanguage } from '../../../web3/web3Reducer';
 
-import RedeemIcon from '@material-ui/icons/Redeem';
+import AutorenewRoundedIcon from '@material-ui/icons/AutorenewRounded';
 import { BNToDecimal } from '../../../web3/helpers';
 import { FluxAddressDetails } from '../../../interfaces';
 import { getConfig } from '../../../../config';
@@ -46,8 +46,8 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, addressDet
 		<form onSubmit={onSubmit}>
 			<DialogTitle id="form-dialog-title">
 				<Box display="flex" alignItems="center" alignContent="center">
-					Mint {mintableTokenShortName} tokens
-					<Box display="flex" pl={1} ><RedeemIcon style={{ color: '#0ff' }} /></Box>
+					<strong>Mint {mintableTokenShortName}</strong>
+					<Box display="flex" pl={1} ><AutorenewRoundedIcon style={{ color: '#8b0000' }} /></Box>
 				</Box>
 			</DialogTitle>
 			<DialogContent>
@@ -55,7 +55,7 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, addressDet
 				<Box my={1}>Total Mintable: ~<Box display="inline" fontWeight="fontWeightBold">{BNToDecimal(addressDetails.mintAmount, true)} {mintableTokenShortName}</Box></Box>
 				<Box my={3}><Divider /></Box>
 
-				<Typography gutterBottom={true}>To continue specify where you want to mint these {mintableTokenShortName} tokens. You can specify any Ethereum-based address.</Typography>
+				<Typography gutterBottom={true}>Get ready for some BRAIN-boosting excitement! It's time to determine the destination for these newly minted BRAIN tokens. With the entire Ethereum universe at your disposal, you have the freedom to choose any Ethereum-based address. Whether it's your own or a friend's, simply pick the spot, and we'll kickstart the BRAIN rain! Let the tokens flow and usher in a wave of meme-powered goodness wherever you decide to send them. The choice is yours, so make it count.</Typography>
 
 				<Box my={3}>
 					<Typography>Your unminted {mintableTokenShortName} balance will be sent to the following address:</Typography>
@@ -85,7 +85,7 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, addressDet
 						</Button>
 					</Box>
 					<Button type="submit" color="secondary" size="large" variant="outlined"  >
-						Continue
+						Mint
 					</Button>
 				</Box>
 			</DialogActions>

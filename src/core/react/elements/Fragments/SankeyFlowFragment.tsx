@@ -139,10 +139,10 @@ const SankeyFlowFragment: React.FC<SankeyProps> = React.memo(({ balances, addres
 
 	const links = [
 		{ source: SankeyNodeType.CirculatingSupply, target: SankeyNodeType.Burned, value: getNodeValue(addressDetails.globalBurnedAmount, Token.Mintable), color: '#ffb5001a' },
-		{ source: SankeyNodeType.KnownMoney, target: SankeyNodeType.CirculatingSupply, value: getNodeValue(lockedDamSupply, Token.Lockable), color: '#00ffff1a' },
+		{ source: SankeyNodeType.KnownMoney, target: SankeyNodeType.CirculatingSupply, value: getNodeValue(lockedDamSupply, Token.Lockable), color: '#8B00001a' },
 		{ source: SankeyNodeType.CirculatingSupply, target: SankeyNodeType.UniswapSupply, value: getNodeValue(m0Supply, Token.Mintable), color: '#f200751a' },
 
-		{ source: SankeyNodeType.FixedDamSupply, target: SankeyNodeType.KnownMoney, value: getNodeValue(lockedDamSupply, Token.Lockable), color: '#00ffff1a' },
+		{ source: SankeyNodeType.FixedDamSupply, target: SankeyNodeType.KnownMoney, value: getNodeValue(lockedDamSupply, Token.Lockable), color: '#8B00001a' },
 		{ source: SankeyNodeType.FixedDamSupply, target: SankeyNodeType.RemainingDamSupply, value: getNodeValue(remainingDamSupply, Token.Lockable), color: '#ffffff1a' },
 		{ source: SankeyNodeType.FixedDamSupply, target: SankeyNodeType.DamUniswapSupply, value: getNodeValue(balances.uniswapDamTokenReserves.dam, Token.Lockable), color: '#f200751a' },
 		...getRemainingSupplyLinks(),

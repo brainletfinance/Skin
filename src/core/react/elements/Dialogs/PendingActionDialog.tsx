@@ -38,11 +38,11 @@ const PendingActionDialog: React.FC<Params> = React.memo(({ open, queries, conne
 	const getDetails = () => {
 		const getConfirmationMessage = (transactionType: string) => {
 			return <>
-				<Typography gutterBottom={true}>Your <Box fontWeight="bold" display="inline">{transactionType}</Box> transaction is pending. Please wait while it's broadcasted to Ethereum network.</Typography>
+				<Typography gutterBottom={true}>Your <Box fontWeight="bold" display="inline">{transactionType}</Box> is being authorized. Please wait while it's broadcast to Arbitrum network.</Typography>
 				<Box mt={3} mb={4}>
 					<Typography gutterBottom={true}>This blockchain confirmation may take around 15 seconds or longer depending on your gas configuration.</Typography>
 				</Box>
-				<Typography className={classes.highlightedText}>Please follow directions in {getConnectionMethodName()} to continue.</Typography>
+				<Typography className={classes.highlightedText}>Please confirm the transaction in {getConnectionMethodName()} to continue.</Typography>
 			</>
 		}
 
@@ -56,8 +56,8 @@ const PendingActionDialog: React.FC<Params> = React.memo(({ open, queries, conne
 					}
 				case commonLanguage.queries.GetAuthorizeFluxOperatorResponse:
 					return {
-						title: 'Awaiting Authorization Response',
-						message: getConfirmationMessage(`Enabling of ${mintableTokenShortName} validator`)
+						title: 'ZERO BRAIN CELLS DETECTED!',
+						message: getConfirmationMessage(`request to start a Brain Mint`)
 					}
 				case commonLanguage.queries.GetBurnFluxResponse:
 					return {
@@ -76,8 +76,8 @@ const PendingActionDialog: React.FC<Params> = React.memo(({ open, queries, conne
 					}
 				case commonLanguage.queries.GetUnlockDamTokensResponse:
 					return {
-						title: 'Awaiting Validator Stop Confirmation',
-						message: getConfirmationMessage('Validator Stopping')
+						title: 'Awaiting Unlock Confirmation',
+						message: getConfirmationMessage('unlock')
 					}
 			}
 		}

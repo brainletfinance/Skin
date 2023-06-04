@@ -7,7 +7,7 @@ import ExploreLiquidityPools, { LiquidityPoolButtonType } from './ExploreLiquidi
 
 const useStyles = makeStyles(() => ({
 	paperBottom: {
-		borderTop: `1px solid ${theme.classes.palette.highlight}`,
+		backgroundColor: `#f8f8f8`
 	},
 }));
 

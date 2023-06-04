@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		nested: {
 			paddingLeft: theme.spacing(4),
-			background: '#22242e'
+			background: '#c8c8c8'
 		},
 		logoArea: {
 			display: 'flex',
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexGrow: 1,
 		},
 		parent: {
-			background: '#22242e'
+			background: '#c8c8c8'
 		},
 		drawerGridContainer: {
 			height: '100%',
@@ -209,19 +209,19 @@ const Render: React.FC<RenderParams> = React.memo(({ dispatch, isMobileDrawerOpe
 		{
 			title: ecosystemButtonlabel,
 
-			icon: <WhatshotIcon />,
+			icon: <WhatshotIcon style={{ color: '#8b0000' }}/>,
 			className: classes.parent,
 			expandIcon: true
 		},
 		{
 			title: 'Homepage',
-			icon: <HomeIcon />,
+			icon: <HomeIcon style={{ color: '#8b0000' }} />,
 			href: '#',
 			className: classes.nested
 		},
 		{
-			title: 'Validator Dashboard',
-			icon: <MonetizationOnIcon />,
+			title: 'Minting Dashboard',
+			icon: <MonetizationOnIcon style={{ color: '#8b0000' }} />,
 			href: '#dashboard',
 			className: classes.nested
 		},

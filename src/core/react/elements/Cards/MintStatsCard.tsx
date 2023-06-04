@@ -55,7 +55,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 				return;
 			}
 
-			return <Box px={2} display="inline-block"><Button size="small" variant="outlined" onClick={() => showUnlockDialog()} startIcon={<LockOpenIcon style={{ color: '#0FF' }} />}>Unlock DAM</Button></Box>
+			return <Box px={2} display="inline-block"><Button size="small" variant="outlined" onClick={() => showUnlockDialog()} startIcon={<LockOpenIcon style={{ color: '#8b0000' }} />}>Unlock DAM</Button></Box>
 		}
 		return <>
 			DAM Powering Validators
@@ -66,7 +66,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 		const getDuration = () => {
 			if (addressLock.blockNumber === addressLock.lastMintBlockNumber) {
 				return {
-					hours: 'No Mint Since Start',
+					hours: 'You have not yet minted',
 					blocks: undefined
 				}
 			}
@@ -75,8 +75,8 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 		const duration = getDuration()
 
 		return <DetailedListItem
-			title="Last Mint:"
-			main={<>{duration.hours}</>}
+			title="You Last Minted:"
+			main={<>{duration.hours} ago</>}
 			description={<Typography color="textSecondary" display="inline" variant="body2">{duration.blocks}</Typography>}
 		/>
 	}
@@ -92,8 +92,8 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 		const duration = getBlockDuration(addressLock.blockNumber)
 
 		return <DetailedListItem
-			title="Started Mint Age:"
-			main={<>{duration.hours}</>}
+			title="Mint Started:"
+			main={<>{duration.hours} ago</>}
 			description={<Typography color="textSecondary" display="inline" variant="body2">{duration.blocks}</Typography>}
 		/>
 	}
@@ -115,7 +115,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 
 	const getFluxToBurnForMaxBurn = () => {
 		return <DetailedListItem
-		title={isTargetReached ? <>{mintableTokenShortName} {maxBurnMultiplier}x Bonus Reserves (<Typography color="secondary" display="inline">OVERBURNED</Typography>)</> : `${mintableTokenShortName} to Burn For ${maxBurnMultiplier}x Bonus:`}
+		title={isTargetReached ? <>{mintableTokenShortName} {maxBurnMultiplier}x Bonus Reserves (<Typography color="secondary" display="inline">OVERBURNED</Typography>)</> : `${mintableTokenShortName} to Burn For ${maxBurnMultiplier}x Multiplier:`}
 			main={<>{fluxRequiredToBurn} {mintableTokenShortName}</>}
 			sub={<>{fluxRequiredToBurnInUsdc}</>}
 		/>
@@ -127,7 +127,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 			</ListItem>
 		</List>*/
 		return <DetailedListItem
-			title={'Time Until 3x Time Bonus:'}
+			title={'Time Until 3x HODL Multiplier:'}
 			main={getBlocksRemaining(addressLock.blockNumber, 161280 + 5760, addressDetails.blockNumber, 'Awaiting Mint Start', false, true)}
 			description={<><Typography color="textSecondary" display="inline" variant="body2">{getBlocksRemaining(addressLock.blockNumber, 161280 + 5760, addressDetails.blockNumber, 'Awaiting Mint Start', true, false)}</Typography></>}
 		/>
@@ -139,7 +139,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, addressDetails
 			<Grid container justify="space-between" alignItems="center">
 				<Grid item>
 					<Typography variant="h5" component="h2">
-						{mintableTokenShortName} Minting Statistics
+						{mintableTokenShortName} Mint Info
 					</Typography>
 				</Grid>
 			</Grid>

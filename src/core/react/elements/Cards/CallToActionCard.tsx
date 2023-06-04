@@ -11,8 +11,9 @@ import Big from 'big.js'
 
 import LockIcon from '@material-ui/icons/PlayArrow';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import RedeemIcon from '@material-ui/icons/Redeem';
+import AutorenewRoundedIcon from '@material-ui/icons/AutorenewRounded';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AppsIcon from '@material-ui/icons/Apps';
 import AddIcon from '@material-ui/icons/AvTimer';
@@ -43,16 +44,22 @@ const useStyles = makeStyles(() => ({
 	progressBarLeft: {
 		height: '15px',
 		borderTopLeftRadius: '5px',
-		borderBottomLeftRadius: '5px'
+		borderBottomLeftRadius: '5px',
+		backgroundColor: '#8b0000',
+    	borderRadius: `#0xa2b4`
 	},
 	progressBarRight: {
 		height: '15px',
 		borderTopRightRadius: '5px',
-		borderBottomRightRadius: '5px'
+		borderBottomRightRadius: '5px',
+		backgroundColor: '#e0dcdc',
+    	borderRadius: `#0xa2b4`
 	},
 	formCell: {
 		paddingTop: 0,
 		paddingBottom: 0
+		
+
 	},
 	largeSlider: {
 		'& .MuiSlider-rail': {
@@ -66,7 +73,8 @@ const useStyles = makeStyles(() => ({
 		'& .MuiSlider-thumb': {
 			width: 26,
 			height: 26,
-			border: '2px solid #187a82'
+			border: '2px solid #187a82',
+			color: '#fade02'
 		}
 	},
 	datePicker: {
@@ -89,7 +97,9 @@ const useStyles = makeStyles(() => ({
 		}
 	},
 	topLeftPrices: {
-		color: '#FFF'
+		color: '#000000',
+		fontWeight: 'bold'
+
 	},
 	topLeftPricesContainer: {
 		[theme.muiTheme.breakpoints.down('sm')]: {
@@ -101,6 +111,7 @@ const useStyles = makeStyles(() => ({
 			flexDirection: 'column'
 		}
 	},
+	
 	topContainer: {
 		[theme.muiTheme.breakpoints.down('xs')]: {
 			flexDirection: 'column'
@@ -192,13 +203,13 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 
 						const getButton = () => {
 							const isDisabled = !isCurrentAddress || addressDetails.fluxBalance.isZero()
-							const button = <Button disabled={isDisabled} size="small" variant="outlined" onClick={() => showBurnDialog()} startIcon={<WhatshotIcon style={{ color: '#ff9b00' }} />}>Burn {mintableTokenShortName}</Button>
+							const button = <Button disabled={isDisabled} size="small" variant="outlined" onClick={() => showBurnDialog()} startIcon={<WhatshotIcon style={{ color: '#8b0000' }} />}>Burn {mintableTokenShortName}</Button>
 
 							if (addressDetails.fluxBalance.isZero()) {
 								return <LightTooltip title={`This address must have ${mintableTokenShortName} tokens to burn.`}><Box display="inline-block">{button}</Box></LightTooltip>
 							}
 							if (!isCurrentAddress) {
-								return <LightTooltip title={`You must select this account in your wallet to Burn ${mintableTokenShortName} for this address.`}><Box display="inline-block">{button}</Box></LightTooltip>
+								return <LightTooltip title={`You must select this account in your wallet to Burn {mintableTokenShortName} for this address.`}><Box display="inline-block">{button}</Box></LightTooltip>
 							}
 
 							return button;
@@ -241,7 +252,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 								}
 								return <TableRow>
 									<TableCell>
-										With x{3 * maxBurnMultiplier} Multiplier
+										With {3 * maxBurnMultiplier}x Multiplier
 									</TableCell>
 									<TableCell align="right">
 										$ {blanceWitMaxBonusesInUsdc} USD
@@ -249,12 +260,12 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 								</TableRow>
 							}
 							return <>
-								<Table size="small">
-
+								<Table size="small" style={{backgroundColor: '#c8c8c8'}}>
+								Current Balance
 									<TableBody>
 										<TableRow>
-											<TableCell width={20}>
-												Without Multipliers
+											<TableCell width={30}>
+												Without Any Multipliers
 											</TableCell>
 											<TableCell align="right">
 												$ {blanceWithoutBonusesInUsdc} USD
@@ -278,7 +289,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						</>
 					}
 
-					const { isTargetReached, fluxRequiredToBurn, fluxRequiredToBurnInUsdc } = getRequiredFluxToBurn({ addressDetails, addressLock, balances });
+					const { isTargetReached, fluxRequiredToBurn, fluxRequiredToBurnInUsdc } = getRequiredFluxToBurn({ addressDetails, addressLock, balances, targetMultiplier: new BN(maxBurnMultiplier - 1) });
 
 
 					const getFluxBurnTooltip = () => {
@@ -290,9 +301,9 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						}
 						const getDescription = () => {
 							if (isTargetReached) {
-								return <>You've burned enough {mintableTokenShortName} for x10 burn bonus. <Typography color="secondary" display="inline">OVERBURNED</Typography> {mintableTokenShortName} remaining: </>
+								return <>You've burned enough {mintableTokenShortName} for x100 burn bonus. <Typography color="secondary" display="inline">OVERBURNED</Typography> {mintableTokenShortName} remaining: </>
 							}
-							return <>The amount of {mintableTokenShortName} you burn is permanent and will be used in the burn ratio equation. To get the full 10x burn bonus you will need to burn</>
+							return <>The amount of {mintableTokenShortName} you burn is permanent and will be used in the burn ratio equation. To get the full {maxBurnMultiplier}x burn bonus you will need to burn:</>
 						}
 						return <>
 							{getDescription()}
@@ -424,7 +435,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 								</Typography>
 							</TableCell>
 							<TableCell align="left">
-								<InsertInvitationIcon style={{ color: '#00ffff', verticalAlign: 'middle' }} />
+								<InsertInvitationIcon style={{ color: '#8b0000', verticalAlign: 'middle' }} />
 							</TableCell>
 							<TableCell component="th" scope="row" align="left">
 								{getStartArea()}
@@ -540,15 +551,16 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 								}}
 							/>
 						}
+						const maxBurnBarWidth = 10000 * maxBurnMultiplier
 
 						return <Box mt={0.5}>
 							<Grid container>
-								<Grid item style={{ width: `${Math.floor((addressDetails.addressBurnMultiplier / 100000) * 100)}%` }}>
+							<Grid item style={{ width: `${Math.floor((addressDetails.addressBurnMultiplier / maxBurnBarWidth) * 100)}%` }}>
 									<LightTooltip title={getFluxBurnTooltip()}>
 										<LinearProgress variant="determinate" value={100} color="secondary" className={classes.progressBarLeft} />
 									</LightTooltip>
 								</Grid>
-								<Grid item style={{ width: `${Math.ceil(((100000 - addressDetails.addressBurnMultiplier) / 100000) * 100)}%` }}>
+								<Grid item style={{ width: `${Math.ceil(((maxBurnBarWidth - addressDetails.addressBurnMultiplier) / maxBurnBarWidth) * 100)}%` }}>
 									<LightTooltip title={getFluxBurnTooltip()}>
 										<LinearProgress variant="determinate" value={0} color="secondary" className={classes.progressBarRight} />
 									</LightTooltip>
@@ -575,12 +587,12 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						return <Box mt={0.5}>
 							<Grid container>
 								<Grid item style={{ width: `${Math.floor((addressDetails.addressTimeMultiplier / 30000) * 100)}%` }}>
-									<LightTooltip title="Your current bonus is permanent for duration of your started mint. If you stop your validator this bonus is reset.">
+									<LightTooltip title="Your current HODL bonus is permanent for duration of your mint. If you stop your mint this bonus is reset.">
 										<LinearProgress variant="determinate" value={100} color="secondary" className={classes.progressBarLeft} />
 									</LightTooltip>
 								</Grid>
 								<Grid item style={{ width: `${Math.ceil(((30000 - addressDetails.addressTimeMultiplier) / 30000) * 100)}%` }}>
-									<LightTooltip title={`You will receive the full x3 Time Bonus multiplier after leaving your ${lockableTokenShortName} locked-in for another ${getBlocksRemaining(addressLock.blockNumber, 161280 + 5760, addressDetails.blockNumber, 'Awaiting Mint Start')}`}>
+									<LightTooltip title={`You will receive the full x3 HODL multiplier after leaving your ${lockableTokenShortName} locked-in for another ${getBlocksRemaining(addressLock.blockNumber, 161280 + 5760, addressDetails.blockNumber, 'Awaiting Mint Start')}`}>
 										<LinearProgress variant="determinate" value={0} color="secondary" className={classes.progressBarRight} />
 									</LightTooltip>
 								</Grid>
@@ -611,7 +623,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						if (forecastSettings.enabled) {
 							return <>
 								<TextField
-									label="Mint Age Multiplier"
+									label="HODL Multiplier"
 									variant="outlined"
 									size="small"
 									inputProps={{
@@ -656,17 +668,17 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 							if (fluxRequiredToBurn.gt(new Big(0))) {
 								const actualFluxRequiredToBurn = fluxRequiredToBurn.mul(new Big(10).pow(18)).round(0).toFixed()
 								const amountToBurnUsd = getPriceToggle({ value: new BN(actualFluxRequiredToBurn), inputToken: Token.Mintable, outputToken: Token.USDC, balances, round: 2 })
-								return <>(~<strong style={{ color: '#0FF' }}>{numberWithCommas(fluxRequiredToBurn.toFixed(4))} {mintableTokenShortName}</strong> / <strong style={{ color: '#0FF' }}>${amountToBurnUsd}</strong> left to burn for x{getTargetBurnMultiplierDecimal().toFixed(4)} burn multiplier)</>
+								return <>(~<strong style={{ color: '#8b0000' }}>{numberWithCommas(fluxRequiredToBurn.toFixed(4))} {mintableTokenShortName}</strong> / <strong style={{ color: '#8b0000' }}>${amountToBurnUsd}</strong> left to burn for x{getTargetBurnMultiplierDecimal().toFixed(4)} burn multiplier)</>
 							}
 
 						}
 
 
-						return <>(Applied at time of mint, x{maxBurnMultiplier} max)</>
+						return <>(x{maxBurnMultiplier} max - burn BRAIN to increase your multiplier. Decreases when others burn)</>
 					}
 					const getDisabledText = () => {
 						if (!isLocked) {
-							return <>This option will be available once you start your validator in this address.</>
+							return <>This option will be available once you start your Mint using this address.</>
 						}
 						if (!isDelegatedMinter) {
 							return <>Select the <Box fontWeight="bold" display="inline">Delegated Minter Address</Box> account in your wallet to mint for this address.</>
@@ -704,11 +716,11 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						return <TableRow>
 							<TableCell align="left">
 								<Typography color="textSecondary" variant="body1">
-									Forecasted {mintableTokenShortName} Price (in USD)
+									Forecast {mintableTokenShortName} Price (in USD)
 								</Typography>
 							</TableCell>
 							<TableCell align="left">
-								<AttachMoneyIcon style={{ color: '#00ffff' }} />
+								<AttachMoneyIcon style={{ color: '#8b0000' }} />
 							</TableCell>
 							<TableCell component="th" scope="row" align="left">
 								{getPriceArea()}
@@ -720,7 +732,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						if (forecastSettings.enabled) {
 
 							return <>
-								Forecasted {forecastSettings.blocks.toFixed(0)} Unminted Blocks <LightTooltip title="This estimated time is based on assumption that 1 Ethereum Block is genereated every 15 seconds"><Box display="inline">({getUnmintedBlocksDuration()})</Box></LightTooltip>
+								Forecast {forecastSettings.blocks.toFixed(0)} Unminted Blocks <LightTooltip title="This estimated time is based on assumption that 1 Ethereum Block is genereated every 15 seconds"><Box display="inline">({getUnmintedBlocksDuration()})</Box></LightTooltip>
 							</>
 						}
 
@@ -785,8 +797,8 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 						title: <>
 							<Grid container justify="space-between">
 								<Grid item>
-									Validator Dashboard{getMintHeaderLabel()}{getApyHeader()}
-								</Grid>
+								Brainlet Gainz: Minting Dashboard{getMintHeaderLabel()} <span style={{ backgroundColor: '#e0dede' }}>{getApyHeader()}
+								</span></Grid>
 								<Grid item>
 									<FormControlLabel
 										value="start"
@@ -797,7 +809,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 													<Box mr={0.5}><DateRangeIcon color={forecastSettings.enabled ? 'secondary' : undefined} /></Box>
 												</Grid>
 												<Grid item>
-													{forecastSettings.enabled ? <Typography color="secondary">Forecasting Calculator Enabled</Typography> : <Typography>Forecasting Calculator</Typography>}
+													{forecastSettings.enabled ? <Typography color="secondary">Fortune Teller Activated</Typography> : <Typography>Fortune Teller</Typography>}
 												</Grid>
 											</Grid>
 										</>}
@@ -826,11 +838,11 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 											<TableRow>
 												<TableCell align="left">
 													<Typography color="textSecondary" variant="body1">
-														{lockableTokenShortName} Tokens Powering Validator {getDamLockedUsdc()}
+														${lockableTokenShortName} (locked) {getDamLockedUsdc()}
 													</Typography>
 												</TableCell>
 												<TableCell align="left" style={{ width: 25 }}>
-													<LockIcon style={{ color: '#3fb57f', verticalAlign: 'middle' }} />
+													<LockIcon style={{ color: '#8b0000', verticalAlign: 'middle' }} />
 												</TableCell>
 												<TableCell className={classes.formCell} component="th" scope="row" align="left" style={{ width: 140 }}>
 													{getLockedInAmountArea()}
@@ -839,11 +851,11 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 											<TableRow>
 												<TableCell align="left">
 													<Typography color="textSecondary" variant="body1">
-														{mintableTokenShortName} mintable every new block
+														${mintableTokenShortName} minted per block
 													</Typography>
 												</TableCell>
 												<TableCell align="left">
-													<AddIcon style={{ color: '#00ffff', verticalAlign: 'middle' }} />
+													<AddIcon style={{ color: '#8b0000', verticalAlign: 'middle' }} />
 												</TableCell>
 												<TableCell component="th" scope="row" align="left">
 													x {(1 / (10 ** mintableTokenMintPerBlockDivisor)).toFixed(mintableTokenMintPerBlockDivisor)}
@@ -858,7 +870,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 													</Typography>
 												</TableCell>
 												<TableCell align="left">
-													<AppsIcon style={{ color: '#00ffff', verticalAlign: 'middle' }} />
+													<AppsIcon style={{ color: '#8b0000', verticalAlign: 'middle' }} />
 												</TableCell>
 												<TableCell component="th" scope="row" align="left">
 													{getUnmintedBlocksArea()}
@@ -867,14 +879,14 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 											<TableRow>
 												<TableCell align="left">
 													<Typography color="textSecondary" variant="body1">
-														{mintableTokenShortName} Burn Multiplier <Typography variant="body2" display="inline">{getBurnBonusDescription()}</Typography>
+														BURN Multiplier <Typography variant="body2" display="inline">{getBurnBonusDescription()}</Typography>
 														{getBurnButton()}
 													</Typography>
 
 													{getBurnSlider()}
 												</TableCell>
 												<TableCell align="left">
-													<WhatshotIcon style={{ color: '#ff9b00', verticalAlign: 'middle' }} />
+													<WhatshotIcon style={{ color: '#8b0000', verticalAlign: 'middle' }} />
 												</TableCell>
 												<TableCell component="th" scope="row" align="left">
 													{getBurnMultiplierText()}
@@ -883,13 +895,13 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 											<TableRow>
 												<TableCell align="left">
 													<Typography color="textSecondary" variant="body1">
-														Mint Age Multiplier <Typography variant="body2" display="inline">(Applied at time of mint, x3 max)</Typography>
+														HODL Multiplier <Typography variant="body2" display="inline">(x3 max - achieved after keeping ArbiFLUX locked for 28 days. Timer resets with each unlock)</Typography>
 													</Typography>
 
 													{getTimeSlider()}
 												</TableCell>
 												<TableCell align="left">
-													<AlarmIcon style={{ color: '#0ff', verticalAlign: 'middle' }} />
+													<AlarmIcon style={{ color: '#8b0000', verticalAlign: 'middle' }} />
 												</TableCell>
 												<TableCell component="th" scope="row" align="left">
 													{getTimeMultiplierText()}
@@ -902,8 +914,8 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 
 							</Box>
 						</>,
-						action: <>Mint {mintableTokenShortName}</>,
-						actionIcon: <RedeemIcon />,
+						action: <><strong>Mint {mintableTokenShortName}</strong></>,
+						actionIcon: <AutorenewRoundedIcon style={{ color: '#8b0000' }} />,
 						onClick: () => {
 							dispatch({ type: commonLanguage.commands.ShowDialog, payload: { dialog: DialogType.Mint } })
 						},
@@ -914,11 +926,11 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 
 
 			return {
-				title: <>Start Validator</>,
+				title: <>Brainlet Mint (Continue Here)</>,
 				body: <>
-					<Box mx={2} mt={3}>{mintableTokenShortName} minting is enabled! You can now begin by clicking "Start Validator" button below. After starting your validator you will instantly start generating {mintableTokenShortName} tokens!</Box>
+					<Box mx={2} mt={3}>Oh, snap! Only a certified brainlet would have given the green light to that transaction. Bravo, you've earned your honorary Brainlet badge! Now, it's time to kickstart your Brain Minting extravaganza. Just give that "Activate Gainz" button a good ol' click down below, and like magic, you'll instantly become a proud generator of BRAIN tokens! Prepare yourself for an epic influx of brainy goodness. Let the minting (and burning) madness begin!</Box>
 				</>,
-				action: <>Start Validator</>,
+				action: <>Activate Gainz</>,
 				actionIcon: <LockIcon />,
 				onClick: () => {
 					dispatch({ type: commonLanguage.commands.ShowDialog, payload: { dialog: DialogType.LockIn } })
@@ -929,7 +941,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 
 		const getMintingText = () => {
 			if (isArbitrumMainnet) {
-				return `To run your own ${mintableTokenShortName} validator you must first enable minting on Arbitrum L2. Click the "Enable" button below to continue.`
+				return `Ready to kickstart the madness? First, you gotta check that you're running on pure, unadulterated zero brain cells. Slap the 'Zero IQ, That's Me!' button below to confirm your true Brainlet nature and get the burn-party started!`
 
 			}
 			return `To run your own validator you must first enable ${mintableTokenShortName} minting. Click the "Enable" button below to continue.`
@@ -939,7 +951,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 			title: <>
 				<Grid container justify="space-between">
 					<Grid item>
-						Validator Dashboard {getMintHeaderLabel()}
+					Brainlet Mint (Start Here) {getMintHeaderLabel()}
 					</Grid>
 					<Grid item>
 						<FormControlLabel
@@ -951,7 +963,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 										<Box mr={0.5}><DateRangeIcon /></Box>
 									</Grid>
 									<Grid item>
-										{forecastSettings.enabled ? <Typography color="secondary">Forecasting Calculator Enabled</Typography> : <Typography>Forecasting Calculator</Typography>}
+										{forecastSettings.enabled ? <Typography color="secondary">Fortune Teller Enabled</Typography> : <Typography>Fortune Teller</Typography>}
 									</Grid>
 								</Grid>
 							</>}
@@ -963,8 +975,8 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 			body: <><Box mx={2} mt={3}>
 				{getMintingText()}
 			</Box></>,
-			action: <>Enable</>,
-			actionIcon: <PowerSettingsNewIcon />,
+			action: <strong>Zero IQ, That's Me!</strong>,
+			actionIcon: <CheckCircleOutlineIcon style={{ color: 'green' }} />,
 			onClick: () => {
 				dispatch({ type: commonLanguage.commands.AuthorizeFluxOperator });
 			},
@@ -1071,7 +1083,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 			const actualFluxPrice = `$ ${shortFluxPrice}`;
 
 			return <>
-				<Box display="inline" className={classes.topLeftPrices}>{getIcon(Token.Mintable)} <Typography variant="body2" color="textSecondary" display="inline">{mintableTokenShortName}:</Typography> {actualFluxPrice}</Box>
+				<Box display="inline" className={classes.topLeftPrices}>{getIcon(Token.Mintable)} <Typography variant="body2" color="textPrimary" display="inline">{mintableTokenShortName}:</Typography> {actualFluxPrice}</Box>
 			</>
 		}
 		const getDamPrice = () => {
@@ -1079,7 +1091,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 			const actualDamPrice = `$ ${shortDamPrice}`;
 
 			return <>
-				<Box display="inline" className={classes.topLeftPrices}>{getIcon(Token.Lockable)} <Typography variant="body2" color="textSecondary" display="inline">{lockableTokenShortName}:</Typography> {actualDamPrice}</Box>
+				<Box display="inline" className={classes.topLeftPrices}>{getIcon(Token.Lockable)} <Typography variant="body2" color="textPrimary" display="inline">{lockableTokenShortName}:</Typography> {actualDamPrice}</Box>
 			</>
 		}
 		const getEthPrice = () => {
@@ -1087,7 +1099,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressLock, balances, sele
 			const actualFluxPrice = `$ ${shortFluxPrice}`;
 
 			return <>
-				<Box display="inline" className={classes.topLeftPrices}>{getIcon(Token.ETH)} <Typography variant="body2" color="textSecondary" display="inline">ETH:</Typography> {actualFluxPrice}</Box>
+				<Box display="inline" className={classes.topLeftPrices}>{getIcon(Token.ETH)} <Typography variant="body2" color="textPrimary" display="inline">ETH:</Typography> {actualFluxPrice}</Box>
 			</>
 		}
 		return <>

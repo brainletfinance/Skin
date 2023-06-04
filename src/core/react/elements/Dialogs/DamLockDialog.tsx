@@ -60,20 +60,20 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, balances, 
 
 	return <Dialog open={true} onClose={onClose} aria-labelledby="form-dialog-title">
 		<form onSubmit={onSubmit}>
-			<DialogTitle id="form-dialog-title">Start {mintableTokenShortName} Validator</DialogTitle>
+			<DialogTitle id="form-dialog-title">Start {mintableTokenShortName} Mint</DialogTitle>
 			<DialogContent>
-				<Box>From Address: <Box display="inline" fontWeight="fontWeightBold">{selectedAddress}</Box></Box>
+				<Box>Locking Address: <Box display="inline" fontWeight="fontWeightBold">{selectedAddress}</Box></Box>
 				<Box my={1}>Current Balance: <Box display="inline" fontWeight="fontWeightBold">{BNToDecimal(balances.damToken, true)} {lockableTokenShortName}</Box></Box>
 				<Box my={2}><Divider /></Box>
 				<Box mb={4}>
-					<Typography>To continue select how many {lockableTokenShortName} tokens you wish to start your validator with. You can stop your validator to get 100% of {lockableTokenShortName} tokens back at any time.</Typography>
+					<Typography>Select how many {lockableTokenShortName} tokens you wish to lock to start your Mint. You can stop your Mint to get 100% of {lockableTokenShortName} tokens back at ANY TIME.</Typography>
 				</Box>
 
 				<Box my={1}>
 					<TextField
 						autoFocus
 						id="name"
-						label={`Validator Size (${lockableTokenShortName}) Tokens)`}
+						label={`Mint Size (${lockableTokenShortName}) Tokens`}
 						type="text"
 						variant="outlined"
 						value={amount}

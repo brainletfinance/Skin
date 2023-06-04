@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => {
 	return {
 		markdownContainer: {
 			'& a': {
-				color: '#00FFFF'
+				color: '#8b0000'
 			},
 			'& .MuiTypography-gutterBottom': {
 				marginBottom: '0.75em'
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => {
 			maxWidth: 912,
 			display: 'block',
 			margin: '16px auto',
-			border: '1px solid #00FFFF',
+			border: '1px solid #8b0000',
 			borderRadius: 5
 		}
 	}

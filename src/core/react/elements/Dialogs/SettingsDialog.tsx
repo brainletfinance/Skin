@@ -77,7 +77,7 @@ const Render: React.FC<RenderParams> = React.memo(({ clientSettings, dispatch })
 		<DialogTitle id="form-dialog-title">
 			<Box display="flex" alignItems="center" alignContent="center">
 				Settings
-				<Box display="flex" pl={1} ><SettingsIcon style={{ color: '#0ff' }} /></Box>
+				<Box display="flex" pl={1} ><SettingsIcon style={{ color: '#8b0000' }} /></Box>
 			</Box>
 		</DialogTitle>
 		<DialogContent>

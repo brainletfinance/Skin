@@ -143,7 +143,7 @@ const ExploreLiquidityPools: React.FC<Props> = React.memo(({ buttonType, content
 							</Box>
 						</Grid>
 						<Grid item>
-							Explore Liquidity Pools
+							<strong>Buy Tokens</strong>
 						</Grid>
 					</Grid>
 				</Link>
@@ -160,7 +160,7 @@ const ExploreLiquidityPools: React.FC<Props> = React.memo(({ buttonType, content
 							</Box>
 						</Grid>
 						<Grid item>
-							Explore Liquidity Pools
+						<strong>Buy Tokens</strong>
 						</Grid>
 
 					</Grid>
@@ -211,13 +211,13 @@ const ExploreLiquidityPools: React.FC<Props> = React.memo(({ buttonType, content
 								<Grid container spacing={2} className={classes.buttonsContainer}>
 									<Grid item className={classes.buttonGridItem}>
 										<Box ml={3}>
-											<Button size="large" variant="outlined" color="secondary" onClick={handleTradeClick}>Trade</Button>
+											<Button size="large" variant="outlined" color="secondary" onClick={handleTradeClick}>Buy</Button>
 										</Box>
 
 									</Grid>
 									<Grid item className={classes.buttonGridItem}>
 										<Box ml={1}>
-											<Button size="large" variant="outlined" href={pool.links.info} target="_blank" rel="noopener noreferrer">Analytics</Button>
+											<Button size="large" variant="outlined" href={pool.links.info} target="_blank" rel="noopener noreferrer">Chart</Button>
 										</Box>
 									</Grid>
 									<Grid item className={classes.buttonGridItem}>
@@ -341,7 +341,7 @@ const ExploreLiquidityPools: React.FC<Props> = React.memo(({ buttonType, content
 			transformOrigin={{ vertical: -50, horizontal: "left" }}
 		>
 			<Box mx={2} my={2}>
-				Our Liquidity Pools <Typography variant="body2" color="textSecondary" display="inline">(Brainlets earn on every trade)</Typography>
+			Take the quantum leap into our Liquidity Pools! With no premine in sight, these pools harness the collective power of Brainlets like you, forming a meme-worthy brain network of epic liquidity!
 			</Box>
 			<Box my={1}>
 				<Divider />

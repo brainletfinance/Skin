@@ -1,3 +1,5 @@
+import ReactDOM from "react-dom";
+
 import React, { useContext, useEffect } from 'react';
 import { CircularProgress, Box, Container, Button, Typography, Grid, Link, MenuItem, Menu, Snackbar, makeStyles } from '@material-ui/core';
 
@@ -167,12 +169,12 @@ const Render: React.FC<RenderParams> = React.memo(({ isLate, dialog, isInitializ
 			}
 			return <Box mr={1} display="inline"><img src={metamaskIcon} alt="Metamask" width="24" height="24" style={{ verticalAlign: 'middle' }} /></Box>
 		}
-		return <Box className={classes.fullScreenSplash}>
+		return <Box className="window-body">
 			<Box mt={8 + 6} mb={6} alignItems="center" justifyContent="center" display="flex" flexDirection="column">
 				<Grid container justify="center"><Grid item>{getLogo()}</Grid></Grid>
 				<Box mt={3} mb={6} textAlign="center">
-					<Typography variant="h5" color="textPrimary" gutterBottom>Connect to Ethereum Network</Typography>
-					<Typography color="textSecondary">To interact with {lockableTokenShortName} and {mintableTokenShortName} tokens you must connect to your wallet and select an address.</Typography>
+					<Typography variant="h5" color="textPrimary" gutterBottom>Connect with the Arbitrum Network to open the gateway to the Brainlet party!</Typography>
+					<Typography variant="h5" color="textPrimary" gutterBottom>Zero brain cells? Perfect, you're in the right place!</Typography>
 				</Box>
 
 				<Box>

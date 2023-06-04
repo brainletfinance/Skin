@@ -5,7 +5,7 @@ import { makeStyles, Box, Hidden, Card, Divider, Grid, useMediaQuery, useTheme }
 const useStyles = makeStyles(() => {
 	return {
 		cardMobile: {
-			background: '#202336',
+			background: '#c8c8c8',
 			overflowX: 'auto'
 		}
 	}

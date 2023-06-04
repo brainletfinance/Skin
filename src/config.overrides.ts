@@ -12,7 +12,7 @@ export const getConfigOverrides = (baseConfig: ReturnType<typeof getBaseConfig>)
 		// [Brainlet Finance] Config overrides:
 
 		ecosystemName: 'Brainlet Finance',
-		ecosystemSlogan: 'No brains, more gains',
+		ecosystemSlogan: 'No Brains more Gainz',
 
 		lockableTokenFullName: 'ArbiFLUX',
 		lockableTokenShortName: 'ArbiFLUX',

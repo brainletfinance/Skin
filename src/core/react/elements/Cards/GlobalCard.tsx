@@ -33,7 +33,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, addressToke
 	const getFluxCurrentSupply = () => {
 		const balanceInUsdc = `$ ${getPriceToggle({ value: balances.fluxTotalSupply, inputToken: Token.Mintable, outputToken: Token.USDC, balances, round: 2 })} USD`;
 		return <DetailedListItem
-			title={`${mintableTokenShortName} Current Supply:`}
+			title={`${mintableTokenShortName} Circulating Supply:`}
 			main={<>{BNToDecimal(balances.fluxTotalSupply, true, 18, mintableTokenPriceDecimals)} {mintableTokenShortName}</>}
 			sub={<>{balanceInUsdc}</>}
 		/>
@@ -41,7 +41,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, addressToke
 
 	const getFluxBurned = () => {
 		return <DetailedListItem
-			title={`${mintableTokenShortName} Burned:`}
+			title={`${mintableTokenShortName} Perma Burned:`}
 			main={<>{BNToDecimal(addressDetails.globalBurnedAmount, true, 18, mintableTokenPriceDecimals)} {mintableTokenShortName}</>}
 			sub={<>{getBurnedUsdc()}</>}
 			description={<Typography variant="body2" color="textSecondary" display="inline">{getBurnPercent()}</Typography>}
@@ -55,7 +55,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, addressToke
 		}
 
 		return <DetailedListItem
-			title={`${lockableTokenShortName} Powering Validators:`}
+			title={`${lockableTokenShortName} Powering Mints:`}
 			main={<>{BNToDecimal(addressDetails.globalLockedAmount, true, 18, 2)} {lockableTokenShortName}</>}
 			sub={<>{getLockedPercent()}</>}
 			description={<Typography variant="body2" color="textSecondary" display="inline"> ({lockedPercent}% of {isArbitrumMainnet ? 'L2' : 'lifetime'} supply)</Typography>}
@@ -74,7 +74,7 @@ const Render: React.FC<RenderParams> = React.memo(({ addressDetails, addressToke
 			<Grid container justify="space-between" alignItems="center">
 				<Grid item>
 					<Typography variant="h5" component="h2">
-						Global Statistics
+						Worldwide Brainlet Burnathon Statistics
 					</Typography>
 				</Grid>
 			</Grid>

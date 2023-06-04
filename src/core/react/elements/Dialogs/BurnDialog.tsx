@@ -42,7 +42,7 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, balances, 
 		return <Box mt={1} mb={3}>
 			<TextField
 				id="name"
-				label="Ethereum Address (Target address of the burn)"
+				label="Enter Ethereum Address (Target address of the burn)"
 				type="text"
 				variant="outlined"
 				value={targetAddress}
@@ -69,8 +69,8 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, balances, 
 		<form onSubmit={onSubmit}>
 			<DialogTitle id="form-dialog-title">
 				<Box display="flex" alignItems="center" alignContent="center">
-					Burn {mintableTokenShortName} tokens
-					<Box display="flex" pl={1} ><WhatshotIcon style={{ color: '#ff9b00' }} /></Box>
+					<strong>Burn {mintableTokenShortName}</strong>
+					<Box display="flex" pl={1} ><WhatshotIcon style={{ color: '#8b0000' }} /></Box>
 				</Box>
 			</DialogTitle>
 			<DialogContent>
@@ -78,15 +78,19 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, balances, 
 				<Box my={1}>Current Balance: <Box display="inline" fontWeight="fontWeightBold">{BNToDecimal(balances.fluxToken, true)} {mintableTokenShortName}</Box></Box>
 				<Box my={3}><Divider /></Box>
 
-				<Typography gutterBottom={true}>To continue select how many {mintableTokenShortName} tokens you wish to burn. You can target any Ethereum based address that current is an active {ecosystemName} Validator.</Typography>
+				<Typography gutterBottom={true}>Select the number of BRAIN tokens you're ready to toss into the bonfire. Remember, you can direct this blaze to any Ethereum-based address that's locked some ArbiFLUX in its clutches.</Typography>
 				<Box my={4}>
-					<Typography>Burning {mintableTokenShortName} permanently increases your {mintableTokenShortName} minting rate on the destination address. {getLearnMoreBurningLink()}</Typography>
+					<Typography>By charring BRAIN tokens, you're powering up the Burn Multiplier on the destination address! And by default, that address is yours. Feeling generous? You can even specify a different address to send the burning love - perhaps another fellow brainlet!
+						
+						Oh, and let's not forget: This burn-off is a worldwide showdown, so burn wisely!{getLearnMoreBurningLink()}</Typography></Box>
+						<Box my={4}>						
+						<Typography>Confused? Activate the mystical powers of the BRAIN fortune teller to unveil the exact amount of BRAIN tokens you must sacrifice to achieve your desired Burn Multiplier. Simply engage the fortune teller and prepare to be amazed as it reveals the secrets of BRAIN burning. Whether you seek to multiply your burn by two, ten, or beyond, the fortune teller will guide you on the path to BRAIN-burning enlightenment.</Typography>
 				</Box>
 				<Box mt={3} mb={3}>
 					<TextField
 						autoFocus
 						id="name"
-						label={`Total ${mintableTokenShortName} Tokens to burn`}
+						label={`Enter the amount of ${mintableTokenShortName} you wish to burn`}
 						type="text"
 						variant="outlined"
 						value={amount}
@@ -107,7 +111,7 @@ const Render: React.FC<RenderParams> = React.memo(({ selectedAddress, balances, 
 						</Button>
 					</Box>
 					<Button type="submit" color="secondary" size="large" variant="outlined"  >
-						Continue
+						Burn
 					</Button>
 				</Box>
 			</DialogActions>

@@ -4,7 +4,7 @@ import { Box, Button, Typography, Divider, Dialog, DialogTitle, DialogContent, T
 import { Web3Context } from '../../../web3/Web3Context'
 import { commonLanguage } from '../../../web3/web3Reducer';
 
-import RedeemIcon from '@material-ui/icons/Redeem';
+import AutorenewRoundedIcon from '@material-ui/icons/AutorenewRounded';
 import { FluxAddressDetails, Token } from '../../../interfaces';
 import { getConfig } from '../../../../config';
 
@@ -47,7 +47,7 @@ const Render: React.FC<RenderParams> = React.memo(({ token, selectedAddress, add
 			<DialogTitle id="form-dialog-title">
 				<Box display="flex" alignItems="center" alignContent="center">
 					Instantly Buy/Sell FLUX Tokens
-					<Box display="flex" pl={1} ><RedeemIcon style={{ color: '#0ff' }} /></Box>
+					<Box display="flex" pl={1} ><AutorenewRoundedIcon style={{ color: '#8b0000' }} /></Box>
 				</Box>
 			</DialogTitle>
 			<DialogContent>
